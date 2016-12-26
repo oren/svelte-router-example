@@ -2,19 +2,35 @@
 
 email: <input type="text" name="email" bind:value='email'><br>
 password: <input type="password" name="password" bind:value='password'><br>
-<button on:click='login(email, password)'>click and hold</button>
+<button on:click='login(email, password)'>Login</button>
 
 <script>
+  import api from '../services/api';
+
   export default {
      methods: {
       login (email, password) {
-        console.log(email + password);
+        if(valid(email, password)) {
+          var user = api.login();
+          console.log("user", user);
+          return;
+        }
+
+        console.log('not valid');
       }
     }
   }
 
-function validate() {
-  return true;
-}
+  function valid(email, password) {
+    if(email === '') {
+      return false;
+    }
+
+    if(password === '') {
+      return false;
+    }
+
+    return true;
+  }
 </script>
 
