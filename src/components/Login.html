@@ -1,0 +1,20 @@
+<h1>Login</h1>
+
+email: <input type="text" name="email" bind:value='email'><br>
+password: <input type="password" name="password" bind:value='password'><br>
+<button on:click='login(email, password)'>click and hold</button>
+
+<script>
+  export default {
+     methods: {
+      login (email, password) {
+        console.log(email + password);
+      }
+    }
+  }
+
+function validate() {
+  return true;
+}
+</script>
+

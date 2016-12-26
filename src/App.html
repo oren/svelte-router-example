@@ -3,6 +3,7 @@
   <nav>
     <ul>
       <li><Link to='/home'>Home</Link></li>
+      <li><Link to='/login'>Login</Link></li>
       <li><Link to='/about/bob'>About <em>Bob</em></Link></li>
       <li><Link to='/about/alice'>About <strong>Alice</strong></Link></li>
     </ul>
@@ -11,14 +12,24 @@
   <div id='content'></div>
 </header>
 
+<style>
+  header {
+    color: grey;
+    font-size: 2em;
+    font-family: 'Comic Sans MS';
+  }
+</style>
+
 <script>
 import createRouter from './services/createRouter';
+import Login from './components/Login.html';
 import Home from './components/Home.html';
 import About from './components/About.html';
 import Link from './components/Link.html';
 
 const router = createRouter({
-  '/': '/home',
+  '/': '/login',
+  '/login': Login,
   '/home': Home,
   '/about/:name': About,
 });
@@ -33,6 +44,7 @@ export default {
   },
 
   components: {
+    Login,
     Link,
     Home,
     About,
