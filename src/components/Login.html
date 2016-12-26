@@ -1,16 +1,28 @@
 <h1>Login</h1>
 
+<p class='error'>.{{errorEmail}}</p>
 email: <input type="text" name="email" bind:value='email'><br>
+
+<p class='error'>.{{errorPassword}}</p>
 password: <input type="password" name="password" bind:value='password'><br>
+
 <button on:click='login(email, password)'>Login</button>
 
 <script>
   import api from '../services/api';
 
   export default {
+    data () {
+      return {
+        email: '',
+        password: '',
+        errorEmail: '',
+        errorPassword: ''
+      }
+    },
      methods: {
       login (email, password) {
-        if(valid(email, password)) {
+        if(valid(this, email, password)) {
           var user = api.login();
           console.log("user", user);
           return;
@@ -21,12 +33,22 @@ password: <input type="password" name="password" bind:value='password'><br>
     }
   }
 
-  function valid(email, password) {
+  function valid(that, email, password) {
+    that.set({ error: false });
+    that.set({ errorEmail: '' });
+    that.set({ errorPassword: '' });
+
     if(email === '') {
-      return false;
+      that.set({ error: true });
+      that.set({ errorEmail: "Email can not be empty" });
     }
 
     if(password === '') {
+      that.set({ error: true });
+      that.set({ errorPassword: "Password can not be empty" });
+    }
+
+    if(that.get('error')) {
       return false;
     }
 
@@ -34,3 +56,10 @@ password: <input type="password" name="password" bind:value='password'><br>
   }
 </script>
 
+<style>
+  header {
+    color: grey;
+    font-size: 1em;
+    font-family: 'Comic Sans MS';
+  }
+</style>
