@@ -4,8 +4,8 @@
     <ul>
       <li><Link to='/home'>Home</Link></li>
       <li><Link to='/login'>Login</Link></li>
-      <li><Link to='/about/bob'>About <em>Bob</em></Link></li>
-      <li><Link to='/about/alice'>About <strong>Alice</strong></Link></li>
+      <li><Link to='/doctors'>Doctors</Link></li>
+      <!-- <li><Link to='/about/alice'>About <strong>Alice</strong></Link></li> -->
     </ul>
   </nav>
 </header>
@@ -25,12 +25,14 @@
   import Login from './components/Login.html';
   import Home from './components/Home.html';
   import About from './components/About.html';
+  import Doctors from './components/Doctors.html';
   import Link from './components/Link.html';
 
   const router = createRouter({
     '/': '/login',
-    '/login': Login,
     '/home': Home,
+    '/login': Login,
+    '/doctors': Doctors,
     '/about/:name': About,
   });
 
