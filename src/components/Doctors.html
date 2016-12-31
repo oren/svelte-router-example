@@ -1,0 +1,24 @@
+<h2>Doctors</h2>
+<ul>
+  {{#each doctors as doctor}}
+  <li>{{doctor.name}}</li>
+  {{/each}}
+</ul>
+
+<script>
+  import api from '../services/api';
+
+  export default {
+    data () {
+      return {
+        doctors: [
+          {name: "Wong"},
+          {name: "Tan"},
+          {name: "Doris"}
+        ],
+      }
+    }
+  }
+
+</script>
+
