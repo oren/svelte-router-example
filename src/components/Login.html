@@ -1,12 +1,17 @@
 <h1>Login</h1>
 
-<p class='error'>.{{errorEmail}}</p>
-email: <input type="text" name="email" bind:value='email'><br>
+{{#if user.loggedIn}}
+  you are loggedin
+{{else}}
+  <p class='error'>{{errorEmail}}</p>
+  email: <input type="text" name="email" bind:value='email'><br>
 
-<p class='error'>.{{errorPassword}}</p>
-password: <input type="password" name="password" bind:value='password'><br>
+  <p class='error'>{{errorPassword}}</p>
+  password: <input type="password" name="password" bind:value='password'><br>
 
-<button on:click='login(email, password)'>Login</button>
+  <button on:click='login(email, password)'>Login</button>
+{{/if}}
+
 
 <script>
   import api from '../services/api';
@@ -14,6 +19,7 @@ password: <input type="password" name="password" bind:value='password'><br>
   export default {
     data () {
       return {
+        user: {},
         email: '',
         password: '',
         errorEmail: '',
@@ -25,6 +31,7 @@ password: <input type="password" name="password" bind:value='password'><br>
         if(valid(this, email, password)) {
           var user = api.login();
           console.log("user", user);
+          this.set({ user: {loggedIn: true} });
           return;
         }
 
@@ -57,9 +64,8 @@ password: <input type="password" name="password" bind:value='password'><br>
 </script>
 
 <style>
-  header {
-    color: grey;
+  .error {
+    color: red;
     font-size: 1em;
-    font-family: 'Comic Sans MS';
   }
 </style>

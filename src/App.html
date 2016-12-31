@@ -1,5 +1,5 @@
 <header>
-  <h1>App test</h1>
+  <h1>Admin Website</h1>
   <nav>
     <ul>
       <li><Link to='/home'>Home</Link></li>
@@ -8,9 +8,9 @@
       <li><Link to='/about/alice'>About <strong>Alice</strong></Link></li>
     </ul>
   </nav>
-
-  <div id='content'></div>
 </header>
+
+<div id='content'></div>
 
 <style>
   header {
@@ -21,33 +21,33 @@
 </style>
 
 <script>
-import createRouter from './services/createRouter';
-import Login from './components/Login.html';
-import Home from './components/Home.html';
-import About from './components/About.html';
-import Link from './components/Link.html';
+  import createRouter from './services/createRouter';
+  import Login from './components/Login.html';
+  import Home from './components/Home.html';
+  import About from './components/About.html';
+  import Link from './components/Link.html';
 
-const router = createRouter({
-  '/': '/login',
-  '/login': Login,
-  '/home': Home,
-  '/about/:name': About,
-});
+  const router = createRouter({
+    '/': '/login',
+    '/login': Login,
+    '/home': Home,
+    '/about/:name': About,
+  });
 
-export default {
-  onrender() {
-    router.start(window.location, window.document.querySelector('#content'));
-  },
+  export default {
+    onrender() {
+      router.start(window.location, window.document.querySelector('#content'));
+    },
 
-  onteardown() {
-    router.teardown();
-  },
+    onteardown() {
+      router.teardown();
+    },
 
-  components: {
-    Login,
-    Link,
-    Home,
-    About,
+    components: {
+      Login,
+      Link,
+      Home,
+      About,
+    }
   }
-}
 </script>
