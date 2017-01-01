@@ -1,4 +1,5 @@
-build
+build/index.html
+build/bundle.js
 dist
 node_modules
 npm-debug.log
