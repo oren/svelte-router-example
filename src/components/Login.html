@@ -4,14 +4,15 @@
   you are loggedin
 {{else}}
   <p class='error'>{{errorEmail}}</p>
-  email: <input type="text" name="email" bind:value='email'><br>
+  <label for="email">Email</label>
+  <input type='text' name='email' id='email' bind:value='email'><br>
 
   <p class='error'>{{errorPassword}}</p>
-  password: <input type="password" name="password" bind:value='password'><br>
+  <label for='password'>Password</label>
+  <input type='password' name='password' id='password' bind:value='password'><br>
 
   <button on:click='login(email, password)'>Login</button>
 {{/if}}
-
 
 <script>
   import api from '../services/api';
@@ -30,7 +31,6 @@
       login (email, password) {
         if(valid(this, email, password)) {
           var user = api.login();
-          console.log("user", user);
           this.set({ user: {loggedIn: true} });
           return;
         }
