@@ -1,17 +1,19 @@
 <!doctype html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My first Svelte app</title>
-</head>
-<body>
-  <main></main>
-  <script src='<%= process.env.APP_BASE_PATH %>/bundle.js'></script>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My first Svelte app</title>
+    <link rel="manifest" href="./manifest.json">
+  </head>
 
-  <noscript>
-    <title>My first Svelte app - please enableb JavaScript</title>
-  </noscript>
-</body>
+  <body>
+    <main></main>
+    <script src='<%= process.env.APP_BASE_PATH %>/bundle.js'></script>
+
+    <noscript>
+      <title>My first Svelte app - please enableb JavaScript</title>
+    </noscript>
+  </body>
 </html>
 
 <style>
