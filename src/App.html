@@ -37,6 +37,11 @@
   });
 
   export default {
+    data () {
+      return {
+        user2: {logedIn: false}
+      }
+    },
     onrender() {
       router.start(window.location, window.document.querySelector('#content'));
     },

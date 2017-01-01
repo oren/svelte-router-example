@@ -1,1 +1,0 @@
-# svelte-router-example
