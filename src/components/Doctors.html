@@ -11,12 +11,12 @@
   export default {
     data () {
       return {
-        doctors: [
-          {name: "Wong"},
-          {name: "Tan"},
-          {name: "Doris"}
-        ],
+        doctors: [],
       }
+    },
+		onrender () {
+			var doctors = api.getDoctors();
+			this.set({doctors: doctors});
     }
   }
 
