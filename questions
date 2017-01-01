@@ -1,1 +1,3 @@
 how to make the user state available to top level component and to any other components?
+
+i have a manifest.json file. how come Lighthouse tells me i don't have it? https://admin.healthcobot.com/manifest.json
