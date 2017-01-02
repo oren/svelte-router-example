@@ -2,16 +2,13 @@
   <h1>Admin Website</h1>
   <nav>
     <ul>
-      <!-- <li><Link to='/home'>Home</Link></li> -->
       {{#if user2.loggedIn}}
         staus: logged in
         <li><a href='' on:click='logout()'>Logout</a></li>
-        <!-- <li><Link to='/doctors'>Doctors</Link></li> -->
       {{else}}
         status: logged out
         <li><Link to='/login'>Login</Link></li>
       {{/if}}
-      <!-- <li><Link to='/about/alice'>About <strong>Alice</strong></Link></li> -->
     </ul>
   </nav>
 </header>
@@ -44,17 +41,14 @@
 
   export default {
     data () {
-      console.log('data');
       return {
         user2: {loggedIn: false}
       }
     },
     onrender() {
-      console.log('onrender');
       router.start(window.location, window.document.querySelector('#content'));
       const user = localStorage.getItem('user');
       if(user) {
-        console.log('there is a user in localStorage');
         this.set({ user2: {loggedIn: true} });
         return;
       }
@@ -74,7 +68,6 @@
     methods: {
       logout() {
         event.preventDefault();
-        console.log(event, 'logout');
         localStorage.removeItem('user');
         this.set({ user2: {loggedIn: false} });
       }
