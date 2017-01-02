@@ -2,9 +2,14 @@
   <h1>Admin Website</h1>
   <nav>
     <ul>
-      <li><Link to='/home'>Home</Link></li>
-      <li><Link to='/login'>Login</Link></li>
-      <li><Link to='/doctors'>Doctors</Link></li>
+      {{#if user2.loggedIn}}
+        <li><Link to='/doctors'>Doctors</Link></li>
+        <li><Link to='/home'>Home</Link></li>
+        <li><a href='' on:click='logout()'>Logout</a></li>
+      {{else}}
+        <li><Link to='/home'>Home</Link></li>
+        <li><Link to='/login'>Login</Link></li>
+      {{/if}}
       <!-- <li><Link to='/about/alice'>About <strong>Alice</strong></Link></li> -->
     </ul>
   </nav>
@@ -29,7 +34,7 @@
   import Link from './components/Link.html';
 
   const router = createRouter({
-    '/': '/login',
+    '/': Home,
     '/home': Home,
     '/login': Login,
     '/doctors': Doctors,
@@ -38,12 +43,20 @@
 
   export default {
     data () {
+      console.log('data');
       return {
-        user2: {logedIn: false}
+        user2: {loggedIn: false}
       }
     },
     onrender() {
+      console.log('onrender');
       router.start(window.location, window.document.querySelector('#content'));
+      const user = localStorage.getItem('user');
+      if(user) {
+        console.log('there is a user in localStorage');
+        this.set({ user2: {loggedIn: true} });
+        return;
+      }
     },
 
     onteardown() {
@@ -55,6 +68,15 @@
       Link,
       Home,
       About,
+    },
+
+    methods: {
+      logout() {
+        event.preventDefault();
+        console.log(event, 'logout');
+        localStorage.removeItem('user');
+        this.set({ user2: {loggedIn: false} });
+      }
     }
   }
 </script>

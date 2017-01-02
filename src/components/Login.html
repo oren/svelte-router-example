@@ -18,6 +18,15 @@
   import api from '../services/api';
 
   export default {
+    onrender () {
+      //read user object from localStorage
+      const user = localStorage.getItem('user');
+      if(user) {
+        this.set({ user: {loggedIn: true} });
+        return;
+      }
+
+    },
     data () {
       return {
         user: {},
@@ -31,7 +40,9 @@
       login (email, password) {
         if(valid(this, email, password)) {
           var user = api.login();
-          this.set({ user: {loggedIn: true} });
+          this.set({ user: {loggedIn: true, token: 'aoueaoe'} });
+          localStorage.setItem('user', user.token);
+          // fire loggedin event
           return;
         }
 

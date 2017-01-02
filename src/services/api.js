@@ -1,6 +1,6 @@
 const api = {
   login() {
-    return {name: 'josh', email: 'josh@gmail.com'}
+    return {name: 'josh', email: 'josh@gmail.com', token: 'abcde'}
   },
   getDoctors() {
     return [
