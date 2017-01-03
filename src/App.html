@@ -2,9 +2,9 @@
   <h1>Admin Website</h1>
   <nav>
     <ul>
+      <li><Link to='/doctors'>Doctors</Link></li>
       {{#if user2.loggedIn}}
         staus: logged in
-        <li><Link to='/doctors'>Doctors</Link></li>
         <li><a href='' on:click='logout()'>Logout</a></li>
       {{else}}
         status: logged out

@@ -15,9 +15,17 @@
       }
     },
 		onrender () {
-			var doctors = api.getDoctors();
-			this.set({doctors: doctors});
+			api.getDoctors().then(success.bind(this)).catch(error.bind(this));
+
     }
+  }
+
+  function success (doctors) {
+    this.set({doctors: doctors});
+  }
+
+  function error () {
+    this.set({doctors: []});
   }
 
 </script>
