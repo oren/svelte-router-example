@@ -19,6 +19,11 @@ $ npm install
 $ npm start
 ```
 
+### Run the go server
+
+cd server
+go run main.go
+
 This will start a webserver on port 3000, and uses [livereload](https://github.com/napcs/node-livereload). So you can open your browser, point it at http://localhost:3000, and edit away!
 
 ## Options
