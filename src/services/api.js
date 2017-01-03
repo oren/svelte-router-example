@@ -4,13 +4,13 @@ const api = {
   },
   getDoctors() {
     return new Promise(function(resolve, reject) {
-      fetch('https://api.github.com/users/mralexgray/repos', {
+      fetch('http://localhost:3001/doctors/', {
         method: 'get'
       }).then(function(response) {
 
         response.json().then(function(data) {
           console.log('success fetching', data);
-          resolve(data);
+          resolve(data.Doctors);
         });
 
       }).catch(function(err) {

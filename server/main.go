@@ -55,6 +55,9 @@ func getDoctors(w http.ResponseWriter, r *http.Request) {
 		[]string{""},
 	}
 
+	// allow cross domain AJAX requests
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	w.Header().Add("Content-Type", "application/json")
 	// then we encode it as JSON on the response
 	enc := json.NewEncoder(w)
