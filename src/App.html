@@ -1,10 +1,14 @@
 <header>
   <h1>Admin Website</h1>
 
-  <a href='/login'>Login</a>
-  <a href='' on:click='logout()'>Logout</a>
-  <a href='/about'>About</a>
-  <a href='/doctors'>Doctors</a>
+  {{#if user.loggedIn}}
+    <a href='' on:click='logout()'>Logout</a>
+    <a href='/about'>About</a>
+    <a href='/doctors'>Doctors</a>
+  {{else}}
+    <a href='/login'>Login</a>
+  {{/if}}
+
 
   <nav>
     {{#if route()=== '/login'}}

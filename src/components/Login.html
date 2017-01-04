@@ -35,6 +35,8 @@
           var user = api.login();
           this.set({ user: {loggedIn: true, token: 'aoueaoe'} });
           localStorage.setItem('user', user.token);
+          //redirect to home
+          window.location.pathname = '';
           return;
         }
 
