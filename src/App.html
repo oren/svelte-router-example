@@ -2,13 +2,13 @@
   <h1>Admin Website</h1>
 
   <nav>
-  {{#if user.loggedIn}}
-    <a href='' on:click='logout()'>Logout</a>
-    <a href='/about'>About</a>
-    <a href='/doctors'>Doctors</a>
-  {{else}}
-    <a href='/login'>Login</a>
-  {{/if}}
+    {{#if user.loggedIn}}
+      <a href='' on:click='logout()'>Logout</a>
+      <a href='/about'>About</a>
+      <a href='/doctors'>Doctors</a>
+    {{else}}
+      <a href='/login'>Login</a>
+    {{/if}}
 
 
     {{#if route()=== '/'}}
