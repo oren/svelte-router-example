@@ -1,9 +1,14 @@
 <header>
   <h1>Admin Website</h1>
 
+  <a href='/login'>Login</a>
+  <a href='' on:click='logout()'>Logout</a>
+  <a href='/about'>About</a>
+  <a href='/doctors'>Doctors</a>
+
   <nav>
     {{#if route()=== '/login'}}
-      <Login user='{{user2}}'/>
+      <Login user='{{user}}'/>
     {{elseif route() === '/'}}
       <Home/>
     {{elseif route() === '/doctors'}}
@@ -34,11 +39,16 @@
   export default {
     data () {
       return {
-        user2: {loggedIn: false}
+        user: {loggedIn: false}
       }
     },
     onrender() {
-      console.log(window.location.pathname);
+      //read user object from localStorage
+      const user = localStorage.getItem('user');
+      if(user) {
+        this.set({ user: {loggedIn: true} });
+        return;
+      }
     },
 
     onteardown() {
@@ -56,7 +66,7 @@
       logout() {
         event.preventDefault();
         localStorage.removeItem('user');
-        this.set({ user2: {loggedIn: false} });
+        this.set({ user: {loggedIn: false} });
       }
     },
     helpers: {
