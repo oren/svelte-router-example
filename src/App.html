@@ -1,16 +1,16 @@
 <header>
   <h1>Admin Website</h1>
+
   <nav>
-    <ul>
-      <li><Link to='/doctors'>Doctors</Link></li>
-      {{#if user2.loggedIn}}
-        staus: logged in
-        <li><a href='' on:click='logout()'>Logout</a></li>
-      {{else}}
-        status: logged out
-        <li><Link to='/login'>Login</Link></li>
-      {{/if}}
-    </ul>
+    {{#if route()=== '/login'}}
+      <Login user='{{user2}}'/>
+    {{elseif route() === '/'}}
+      <Home/>
+    {{elseif route() === '/doctors'}}
+      <Doctors/>
+    {{elseif route() === '/about'}}
+      <About/>
+    {{/if}}
   </nav>
 </header>
 
@@ -25,20 +25,11 @@
 </style>
 
 <script>
-  import createRouter from './services/createRouter';
   import Login from './components/Login.html';
   import Home from './components/Home.html';
   import About from './components/About.html';
   import Doctors from './components/Doctors.html';
   import Link from './components/Link.html';
-
-  const router = createRouter({
-    '/': Home,
-    '/home': Home,
-    '/login': Login,
-    '/doctors': Doctors,
-    '/about/:name': About,
-  });
 
   export default {
     data () {
@@ -47,16 +38,10 @@
       }
     },
     onrender() {
-      router.start(window.location, window.document.querySelector('#content'));
-      const user = localStorage.getItem('user');
-      if(user) {
-        this.set({ user2: {loggedIn: true} });
-        return;
-      }
+      console.log(window.location.pathname);
     },
 
     onteardown() {
-      router.teardown();
     },
 
     components: {
@@ -64,6 +49,7 @@
       Link,
       Home,
       About,
+      Doctors,
     },
 
     methods: {
@@ -71,6 +57,11 @@
         event.preventDefault();
         localStorage.removeItem('user');
         this.set({ user2: {loggedIn: false} });
+      }
+    },
+    helpers: {
+      route () {
+        return window.location.pathname;
       }
     }
   }
