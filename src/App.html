@@ -1,6 +1,7 @@
 <header>
   <h1>Admin Website</h1>
 
+  <nav>
   {{#if user.loggedIn}}
     <a href='' on:click='logout()'>Logout</a>
     <a href='/about'>About</a>
@@ -10,11 +11,10 @@
   {{/if}}
 
 
-  <nav>
-    {{#if route()=== '/login'}}
-      <Login user='{{user}}'/>
-    {{elseif route() === '/'}}
+    {{#if route()=== '/'}}
       <Home/>
+    {{elseif route() === '/login'}}
+      <Login user='{{user}}'/>
     {{elseif route() === '/doctors'}}
       <Doctors/>
     {{elseif route() === '/about'}}
@@ -71,6 +71,7 @@
         event.preventDefault();
         localStorage.removeItem('user');
         this.set({ user: {loggedIn: false} });
+        window.location.pathname = '';
       }
     },
     helpers: {
